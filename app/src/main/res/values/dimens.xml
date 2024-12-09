@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="loading_indicator_circular_progress_indicator_width">64dp</dimen>
+
+    <dimen name="app_bar_top_app_bar_height">70dp</dimen>
+    <dimen name="app_bar_text_padding_all">8dp</dimen>
+    <dimen name="app_bar_text_font_size">18dp</dimen>
+
+    <dimen name="empty_content_image_size">150dp</dimen>
+    <dimen name="empty_content_text_font_size">17dp</dimen>
+
+    <dimen name="property_list_item_surface_height">330dp</dimen>
+    <dimen name="property_list_item_network_image_height">240dp</dimen>
+    <dimen name="property_list_item_cross_fade_height">90dp</dimen>
+    <dimen name="property_list_item_column_padding_horizontal">8dp</dimen>
+    <dimen name="property_list_item_column_padding_vertical">8dp</dimen>
+
+    <dimen name="properties_screen_spacer_height">58dp</dimen>
+</resources>

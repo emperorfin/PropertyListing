@@ -7,6 +7,7 @@ import emperorfin.android.propertylisting.data.datasource.remote.framework.retro
 import emperorfin.android.propertylisting.data.datasource.remote.framework.retrofit.dto.property.PropertyDataTransferObjectMapper
 import emperorfin.android.propertylisting.data.datasource.remote.framework.retrofit.webservice.hostelworld.endpoint.currencyrates.CurrencyRatesResponse
 import emperorfin.android.propertylisting.data.datasource.remote.framework.retrofit.webservice.hostelworld.endpoint.properties.PropertiesResponse
+import emperorfin.android.propertylisting.data.datasource.remote.framework.retrofit.webservice.hostelworld.jsonobject.properties.property.images.Image
 import emperorfin.android.propertylisting.di.IoDispatcher
 import emperorfin.android.propertylisting.di.MainDispatcher
 import emperorfin.android.propertylisting.di.RemotePropertyDao
@@ -120,6 +121,10 @@ data class PropertyRemoteDataSource @Inject constructor(
 
         propertiesResponse.forEach { property ->
 
+            val imagesGalleryFirstItem: Image? = property.imagesGallery?.first()
+
+            val imageUrl = "${imagesGalleryFirstItem?.prefix ?: ""}${imagesGalleryFirstItem?.suffix ?: ""}"
+
             val propertyDto = PropertyDataTransferObject.newInstance(
                 id = property.id,
                 name = property.name,
@@ -130,6 +135,7 @@ data class PropertyRemoteDataSource @Inject constructor(
                 overallRating = property.overallRating?.overall,
                 city = response.location?.city?.name,
                 country = response.location?.city?.country,
+                imageUrl = imageUrl.ifEmpty { null }
             )
 
             propertiesDto.add(propertyDto)

@@ -16,7 +16,8 @@ data class PropertyUiModel private constructor(
     override val lowestPricePerNightInDollarsWithCurrencySymbol: String,
     override val lowestPricePerNightInPoundsWithCurrencySymbol: String,
     override val city: String,
-    override val country: String
+    override val country: String,
+    override val imageUrl: String,
 ) : PropertyUiModelParams {
 
     companion object {
@@ -35,7 +36,8 @@ data class PropertyUiModel private constructor(
             lowestPricePerNightInDollarsWithCurrencySymbol: String,
             lowestPricePerNightInPoundsWithCurrencySymbol: String,
             city: String,
-            country: String
+            country: String,
+            imageUrl: String,
         ): PropertyUiModel {
             return PropertyUiModel(
                 id = id,
@@ -51,7 +53,8 @@ data class PropertyUiModel private constructor(
                 lowestPricePerNightInDollarsWithCurrencySymbol = lowestPricePerNightInDollarsWithCurrencySymbol,
                 lowestPricePerNightInPoundsWithCurrencySymbol = lowestPricePerNightInPoundsWithCurrencySymbol,
                 city = city,
-                country = country
+                country = country,
+                imageUrl = imageUrl,
             )
         }
 

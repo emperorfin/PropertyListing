@@ -16,6 +16,7 @@ class PropertyEntityMapper @Inject constructor() {
         val overallRating: Double = property.overallRating
         val city: String = property.city
         val country: String = property.country
+        val imageUrl: String = property.imageUrl
 
         return PropertyEntity.newInstance(
             id = id,
@@ -26,7 +27,8 @@ class PropertyEntityMapper @Inject constructor() {
             rating = rating,
             overallRating = overallRating,
             city = city,
-            country = country
+            country = country,
+            imageUrl = imageUrl,
         )
     }
 

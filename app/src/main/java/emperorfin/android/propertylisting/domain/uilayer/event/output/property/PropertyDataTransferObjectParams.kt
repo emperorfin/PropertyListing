@@ -11,5 +11,6 @@ interface PropertyDataTransferObjectParams : Params {
     val overallRating: Double?
     val city: String?
     val country: String?
+    val imageUrl: String?
 
 }

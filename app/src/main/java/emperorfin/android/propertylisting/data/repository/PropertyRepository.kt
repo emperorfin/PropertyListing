@@ -197,6 +197,7 @@ data class PropertyRepository @Inject constructor(
             overallRating = property.overallRating,
             city = property.city,
             country = property.country,
+            imageUrl = property.imageUrl,
         )
 
         // Create if it doesn't exist.

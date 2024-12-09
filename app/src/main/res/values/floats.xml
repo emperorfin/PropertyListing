@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="network_image_shimmer_params_drop_off" format="float" type="dimen">0.65</item>
+
+    <item name="property_list_item_box_alpha" format="float" type="dimen">0.7</item>
+    <item name="property_list_item_column_alpha" format="float" type="dimen">0.85</item>
+</resources>

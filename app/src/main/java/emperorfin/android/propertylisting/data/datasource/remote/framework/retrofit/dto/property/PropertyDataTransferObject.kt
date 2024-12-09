@@ -11,7 +11,8 @@ data class PropertyDataTransferObject private constructor(
     override val rating: Double?,
     override val overallRating: Double?,
     override val city: String?,
-    override val country: String?
+    override val country: String?,
+    override val imageUrl: String?
 ) : PropertyDataTransferObjectParams {
 
     companion object {
@@ -25,7 +26,8 @@ data class PropertyDataTransferObject private constructor(
             rating: Double?,
             overallRating: Double?,
             city: String?,
-            country: String?
+            country: String?,
+            imageUrl: String?
         ): PropertyDataTransferObject {
             return PropertyDataTransferObject(
                 id = id,
@@ -37,6 +39,7 @@ data class PropertyDataTransferObject private constructor(
                 overallRating = overallRating,
                 city = city,
                 country = country,
+                imageUrl = imageUrl,
             )
         }
 

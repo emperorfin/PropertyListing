@@ -25,11 +25,18 @@ class PropertyModelMapper @Inject constructor() {
         val overallRating: Double = property.overallRating ?: MINUS_0_0
         val city: String = property.city ?: EMPTY
         val country: String = property.country ?: EMPTY
+        var imageUrl: String = property.imageUrl ?: EMPTY
 
         var ratingRoundedUp = MINUS_0_0
 
         if (rating > MINUS_0_0) {
             ratingRoundedUp = rating.toBigDecimal().setScale(DECIMAL_PLACES_1, RoundingMode.UP).toDouble()
+        }
+
+        if (imageUrl.isNotEmpty()) {
+            if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
+                imageUrl = "https://$imageUrl"
+            }
         }
 
         return PropertyModel.newInstance(
@@ -41,7 +48,8 @@ class PropertyModelMapper @Inject constructor() {
             rating = ratingRoundedUp,
             overallRating = overallRating,
             city = city,
-            country = country
+            country = country,
+            imageUrl = imageUrl,
         )
     }
 
@@ -56,6 +64,7 @@ class PropertyModelMapper @Inject constructor() {
         val overallRating: Double = property.overallRating!!
         val city: String = property.city!!
         val country: String = property.country!!
+        val imageUrl: String = property.imageUrl!!
 
         return PropertyModel.newInstance(
             id = id,
@@ -66,7 +75,8 @@ class PropertyModelMapper @Inject constructor() {
             rating = rating,
             overallRating = overallRating,
             city = city,
-            country = country
+            country = country,
+            imageUrl = imageUrl,
         )
     }
 
@@ -81,6 +91,7 @@ class PropertyModelMapper @Inject constructor() {
         val overallRating: Double = property.overallRating!!
         val city: String = property.city!!
         val country: String = property.country!!
+        val imageUrl: String = property.imageUrl!!
 
         return PropertyModel.newInstance(
             id = id,
@@ -91,7 +102,8 @@ class PropertyModelMapper @Inject constructor() {
             rating = rating,
             overallRating = overallRating,
             city = city,
-            country = country
+            country = country,
+            imageUrl = imageUrl,
         )
     }
 

@@ -28,6 +28,7 @@ class PropertyUiModelMapper @Inject constructor() {
         val overallRating: Double = property.overallRating
         val city: String = property.city
         val country: String = property.country
+        val imageUrl: String = property.imageUrl
 
         val lowestPricePerNightInDollars: Double = MINUS_0_0
         val lowestPricePerNightInPounds: Double = MINUS_0_0
@@ -52,7 +53,8 @@ class PropertyUiModelMapper @Inject constructor() {
             rating = rating,
             overallRating = overallRating,
             city = city,
-            country = country
+            country = country,
+            imageUrl = imageUrl,
         )
     }
 
@@ -67,6 +69,7 @@ class PropertyUiModelMapper @Inject constructor() {
         val overallRating: Double = property.overallRating
         val city: String = property.city
         val country: String = property.country
+        val imageUrl: String = property.imageUrl
 
         val currencyRateUsd: CurrencyRateModel? =
             currencyRates.singleOrNull { it.currencySymbolOther == CURRENCY_NAME_USD }
@@ -104,7 +107,8 @@ class PropertyUiModelMapper @Inject constructor() {
             rating = rating,
             overallRating = overallRating,
             city = city,
-            country = country
+            country = country,
+            imageUrl = imageUrl,
         )
     }
 

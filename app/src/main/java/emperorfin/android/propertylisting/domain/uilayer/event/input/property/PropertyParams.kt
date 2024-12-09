@@ -11,5 +11,6 @@ data class PropertyParams(
     override val rating: Double? = null,
     override val overallRating: Double? = null,
     override val city: String? = null,
-    override val country: String? = null
+    override val country: String? = null,
+    override val imageUrl: String? = null,
 ) : PropertyModelParams

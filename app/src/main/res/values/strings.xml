@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Property Listing</string>
 
+    <string name="content_description_error_message">Error message</string>
+    <string name="btn_retry">Retry</string>
+    <string name="description">Description</string>
+    <string name="featured">featured</string>
+    <string name="empty"></string>
+    <string name="message_no_internet_connectivity">No internet connectivity.</string>
+    <string name="message_no_internet_loading_cached_properties">No internet connectivity. Loading saved properties…</string>
+
+    <string name="error_message_coil_image_request_failed">Image request failed.</string>
+
     <string name="error_deleting_currency_rates">Error deleting currency rates.</string>
     <string name="error_cant_save_empty_currency_rate_list">An empty list of currency rates cannot be saved.</string>
     <string name="error_all_currency_rates_not_saved">All the currency rate were not saved.</string>

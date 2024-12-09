@@ -11,7 +11,8 @@ data class PropertyModel private constructor(
     override val rating: Double,
     override val overallRating: Double,
     override val city: String,
-    override val country: String
+    override val country: String,
+    override val imageUrl: String,
 ) : PropertyModelParams {
 
     companion object {
@@ -25,7 +26,8 @@ data class PropertyModel private constructor(
             rating: Double,
             overallRating: Double,
             city: String,
-            country: String
+            country: String,
+            imageUrl: String,
         ): PropertyModel {
             return PropertyModel(
                 id = id,
@@ -37,6 +39,7 @@ data class PropertyModel private constructor(
                 overallRating = overallRating,
                 city = city,
                 country = country,
+                imageUrl = imageUrl,
             )
         }
 

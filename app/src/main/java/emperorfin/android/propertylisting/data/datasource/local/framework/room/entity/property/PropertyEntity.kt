@@ -31,7 +31,9 @@ data class PropertyEntity(
     @ColumnInfo(name = COLUMN_INFO_CITY)
     override val city: String,
     @ColumnInfo(name = COLUMN_INFO_COUNTRY)
-    override val country: String
+    override val country: String,
+    @ColumnInfo(name = COLUMN_INFO_IMAGE_URL)
+    override val imageUrl: String,
 ) : PropertyEntityParams {
 
     companion object {
@@ -47,6 +49,7 @@ data class PropertyEntity(
         const val COLUMN_INFO_OVERALL_RATING = "overall_rating"
         const val COLUMN_INFO_CITY = "city"
         const val COLUMN_INFO_COUNTRY = "country"
+        const val COLUMN_INFO_IMAGE_URL = "image_url"
 
         fun newInstance(
             id: Long,
@@ -57,7 +60,8 @@ data class PropertyEntity(
             rating: Double,
             overallRating: Double,
             city: String,
-            country: String
+            country: String,
+            imageUrl: String,
         ): PropertyEntity {
             return PropertyEntity(
                 id = id,
@@ -68,7 +72,8 @@ data class PropertyEntity(
                 rating = rating,
                 overallRating = overallRating,
                 city = city,
-                country = country
+                country = country,
+                imageUrl = imageUrl,
             )
         }
 
