@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,6 +8,12 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.google.dagger.hilt.android)
 }
+
+val properties = Properties().apply {
+    rootProject.file("local.properties").reader().use(::load)
+}
+
+val propHostelWorldBaseUrl = properties["hostelWorld.baseUrl"] as String
 
 android {
     namespace = "emperorfin.android.propertylisting"
@@ -19,6 +27,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "HOSTEL_WORLD_BASE_URL", propHostelWorldBaseUrl)
     }
 
     buildTypes {
