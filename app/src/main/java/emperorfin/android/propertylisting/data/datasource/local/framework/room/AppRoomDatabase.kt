@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.dao.PropertyDao
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.currencyrate.CurrencyRateEntity
+import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.networkstat.NetworkStatEntity
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntity
 
 
-@Database(entities = [PropertyEntity::class, CurrencyRateEntity::class], version = 1, exportSchema = false)
+@Database(entities = [PropertyEntity::class, CurrencyRateEntity::class, NetworkStatEntity::class], version = 1, exportSchema = false)
 abstract class AppRoomDatabase : RoomDatabase() {
 
     abstract val mPropertyDao: PropertyDao

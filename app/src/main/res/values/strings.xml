@@ -82,6 +82,33 @@
     <string name="error_cant_force_refresh_currency_rates_remote_data_source_unavailable">Can\'t force currency rates refresh. Remote data source is unavailable.</string>
     <string name="error_repository_currency_rate_list_not_available">Currency rate list not available repository error.</string>
 
+    <string name="error_memory_network_stat_list_not_available">Network stat list not available memory error.</string>
+    <string name="error_local_network_stat_list_not_available">Network stat list not available local error.</string>
+    <string name="error_remote_network_stat_list_not_available">Network stat list not available remote error.</string>
+    <string name="error_memory_network_stat">Network stat memory error.</string>
+    <string name="error_local_network_stat">Network stat local error.</string>
+    <string name="error_remote_network_stat">Network stat remote error.</string>
+    <string name="error_memory_get_network_stat">Get network stat memory error.</string>
+    <string name="error_local_get_network_stat">Get network stat local error.</string>
+    <string name="error_remote_get_network_stat">Get network stat remote error.</string>
+    <string name="error_memory_insert_network_stat">Insert network stat memory error.</string>
+    <string name="error_local_insert_network_stat">Insert network stat local error.</string>
+    <string name="error_remote_insert_network_stat">Insert network stat remote error.</string>
+    <string name="error_memory_update_network_stat">Update network stat memory error.</string>
+    <string name="error_local_update_network_stat">Update network stat local error.</string>
+    <string name="error_remote_update_network_stat">Update network stat remote error.</string>
+    <string name="error_memory_delete_network_stat">Delete network stat memory error.</string>
+    <string name="error_local_delete_network_stat">Delete network stat local error.</string>
+    <string name="error_remote_delete_network_stat">Delete network stat remote error.</string>
+    <string name="error_memory_non_existent_network_stat_data">Non existent network stat data memory error.</string>
+    <string name="error_local_non_existent_network_stat_data">Non existent network stat data local error.</string>
+    <string name="error_remote_non_existent_network_stat_data">Non existent network stat data remote error.</string>
+    <string name="error_repository_get_network_stat">Get network stat repository error.</string>
+    <string name="error_repository_insert_network_stat">Insert network stat repository error.</string>
+    <string name="error_repository_delete_network_stat">Delete network stat repository error.</string>
+    <string name="error_cant_force_refresh_network_stats_remote_data_source_unavailable">Can\'t force network stats refresh. Remote data source is unavailable.</string>
+    <string name="error_repository_network_stat_list_not_available">Network stat list not available repository error.</string>
+
     <string name="exception_occurred_remote">Remote exception occurred.</string>
     <string name="exception_occurred_local">Local exception occurred.</string>
 </resources>

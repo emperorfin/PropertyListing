@@ -10,16 +10,23 @@ import emperorfin.android.propertylisting.domain.exception.CurrencyRateFailure.C
 import emperorfin.android.propertylisting.domain.exception.CurrencyRateFailure.CurrencyRateRemoteError
 import emperorfin.android.propertylisting.domain.exception.CurrencyRateFailure.GetCurrencyRateRemoteError
 import emperorfin.android.propertylisting.domain.exception.CurrencyRateFailure.GetCurrencyRateRepositoryError
+import emperorfin.android.propertylisting.domain.exception.NetworkStatFailure.NetworkStatListNotAvailableRepositoryError
+import emperorfin.android.propertylisting.domain.exception.NetworkStatFailure.NetworkStatRemoteError
+import emperorfin.android.propertylisting.domain.exception.NetworkStatFailure.GetNetworkStatRepositoryError
+import emperorfin.android.propertylisting.domain.exception.NetworkStatFailure.NetworkStatLocalError
 import emperorfin.android.propertylisting.domain.exception.PropertyFailure.GetPropertyRepositoryError
 import emperorfin.android.propertylisting.domain.exception.PropertyFailure.PropertyListNotAvailableRepositoryError
 import emperorfin.android.propertylisting.domain.exception.PropertyFailure.PropertyLocalError
 import emperorfin.android.propertylisting.domain.exception.PropertyFailure.PropertyRemoteError
 import emperorfin.android.propertylisting.domain.model.currencyrate.CurrencyRateModel
+import emperorfin.android.propertylisting.domain.model.networkstat.NetworkStatModel
 import emperorfin.android.propertylisting.domain.model.property.PropertyModel
+import emperorfin.android.propertylisting.domain.uilayer.event.input.networkstat.NetworkStatParams
 import emperorfin.android.propertylisting.domain.uilayer.event.input.property.PropertyParams
 import emperorfin.android.propertylisting.domain.uilayer.event.output.ResultData
 import emperorfin.android.propertylisting.domain.uilayer.event.output.ResultData.Success
 import emperorfin.android.propertylisting.domain.uilayer.event.output.ResultData.Error
+import emperorfin.android.propertylisting.domain.uilayer.event.output.networkstat.Params as Params_NetworkStat
 import emperorfin.android.propertylisting.domain.uilayer.event.output.property.Params as Params_Property
 import emperorfin.android.propertylisting.domain.uilayer.event.output.currencyrate.Params as Params_CurrencyRate
 import kotlinx.coroutines.CoroutineDispatcher
@@ -36,8 +43,8 @@ data class PropertyRepository @Inject constructor(
 ) : IPropertyRepository {
 
     private var cachedProperties: ConcurrentMap<String, PropertyModel>? = null
-
     private var cachedCurrencyRates: ConcurrentMap<String, List<CurrencyRateModel>>? = null
+    private var cachedNetworkStats: ConcurrentMap<String, NetworkStatModel>? = null
 
     override suspend fun countAllProperties(
         params: Params_Property, countRemotely: Boolean
@@ -391,6 +398,170 @@ data class PropertyRepository @Inject constructor(
         val cachedCurrencyRates = cacheCurrencyRates(currencyRates = currencyRates)
 
         perform(cachedCurrencyRates)
+    }
+
+    override suspend fun countAllNetworkStats(
+        params: Params_NetworkStat, countRemotely: Boolean
+    ): ResultData<Int> = withContext(ioDispatcher) {
+        if (countRemotely) {
+            return@withContext propertyRemoteDataSource.countAllNetworkStats(params = params)
+        } else {
+            return@withContext propertyLocalDataSource.countAllNetworkStats(params = params)
+        }
+    }
+
+    override suspend fun getNetworkStats(
+        params: Params_NetworkStat, forceUpdate: Boolean
+    ): ResultData<List<NetworkStatModel>> {
+        return withContext(ioDispatcher) {
+            if (!forceUpdate) {
+                cachedNetworkStats?.let { networkStats ->
+                    return@withContext Success(networkStats.values.sortedBy { it.requestMethod })
+                }
+            }
+
+            val newNetworkStats: ResultData<List<NetworkStatModel>> =
+                fetchNetworkStatsFromRemoteOrLocal(params = params, forceUpdate = forceUpdate)
+
+            (newNetworkStats as? Success)?.let { refreshNetworkStatCache(it.data) }
+
+            cachedNetworkStats?.values?.let { networkStats ->
+                return@withContext Success(networkStats.sortedBy { it.requestMethod })
+            }
+
+            (newNetworkStats as? Success)?.let {
+                if (it.data.isNotEmpty()) {
+                    return@withContext Success(it.data)
+                } else {
+                    return@withContext Error(
+                        failure = NetworkStatListNotAvailableRepositoryError()
+                    )
+                }
+            }
+
+            return@withContext newNetworkStats as Error
+        }
+    }
+
+    override suspend fun saveNetworkStat(
+        networkStat: NetworkStatModel, saveRemotely: Boolean
+    ): ResultData<Long> = withContext(ioDispatcher) {
+
+        if (saveRemotely) {
+            return@withContext propertyRemoteDataSource.saveNetworkStat(networkStat = networkStat)
+        } else {
+            return@withContext propertyLocalDataSource.saveNetworkStat(networkStat = networkStat)
+        }
+
+    }
+
+    override suspend fun deleteNetworkStat(
+        params: Params_NetworkStat, deleteRemotely: Boolean
+    ): ResultData<Int> = withContext(ioDispatcher) {
+
+        if (deleteRemotely) {
+            return@withContext propertyRemoteDataSource.deleteNetworkStat(params = params)
+        } else {
+            return@withContext propertyLocalDataSource.deleteNetworkStat(params = params)
+        }
+    }
+
+    private suspend fun fetchNetworkStatsFromRemoteOrLocal(
+        params: Params_NetworkStat, forceUpdate: Boolean
+    ): ResultData<List<NetworkStatModel>> {
+
+        var isRemoteException = false
+
+        if (forceUpdate) {
+            when (val networkStatsRemote = propertyRemoteDataSource.getNetworkStats(params = params)) {
+                is Error -> {
+                    if (networkStatsRemote.failure is NetworkStatRemoteError)
+                        isRemoteException = true
+                }
+                is Success -> {
+                    refreshNetworkStatLocalDataSource(networkStats = networkStatsRemote.data)
+
+                    return networkStatsRemote
+                }
+                else -> {}
+            }
+        }
+
+        if (forceUpdate) {
+            if (isRemoteException)
+                return Error(
+                    GetNetworkStatRepositoryError(
+                        message = R.string.exception_occurred_remote
+                    )
+                )
+
+            return Error(
+                GetNetworkStatRepositoryError(
+                    message = R.string.error_cant_force_refresh_network_stats_remote_data_source_unavailable
+                )
+            )
+        }
+
+        val networkStatsLocal = propertyLocalDataSource.getNetworkStats(params = params)
+
+        if (networkStatsLocal is Success) return networkStatsLocal
+
+        if ((networkStatsLocal as Error).failure is NetworkStatLocalError)
+            return Error(
+                GetNetworkStatRepositoryError(
+                    R.string.exception_occurred_local
+                )
+            )
+
+        return Error(
+            GetNetworkStatRepositoryError(
+                R.string.error_fetching_from_remote_and_local
+            )
+        )
+    }
+
+    private fun refreshNetworkStatCache(networkStats: List<NetworkStatModel>) {
+        cachedNetworkStats?.clear()
+
+        networkStats.sortedBy { it.requestMethod }.forEach {
+            cacheNetworkStatAndPerform(it) {}
+        }
+    }
+
+    private suspend fun refreshNetworkStatLocalDataSource(networkStats: List<NetworkStatModel>) {
+
+        return // TODO: REMOVE THIS LINE TO REFRESH LOCAL DATA SOURCE
+
+        networkStats.forEach {
+            val params = NetworkStatParams(requestMethod = it.requestMethod, duration = it.duration)
+
+            propertyLocalDataSource.deleteNetworkStat(params = params)
+
+            propertyLocalDataSource.saveNetworkStat(networkStat = it)
+        }
+    }
+
+    private fun cacheNetworkStat(networkStat: NetworkStatModel): NetworkStatModel {
+
+        val cachedNetworkStat = NetworkStatModel.newInstance(
+            requestMethod = networkStat.requestMethod,
+            duration = networkStat.duration,
+        )
+
+        if (cachedNetworkStats == null) {
+            cachedNetworkStats = ConcurrentHashMap()
+        }
+
+        cachedNetworkStats?.put(cachedNetworkStat.requestMethod, cachedNetworkStat)
+
+        return cachedNetworkStat
+    }
+
+    private inline fun cacheNetworkStatAndPerform(networkStat: NetworkStatModel, perform: (NetworkStatModel) -> Unit) {
+
+        val cachedNetworkStat = cacheNetworkStat(networkStat)
+
+        perform(cachedNetworkStat)
     }
 
 }

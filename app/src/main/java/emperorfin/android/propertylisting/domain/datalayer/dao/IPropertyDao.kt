@@ -2,10 +2,13 @@ package emperorfin.android.propertylisting.domain.datalayer.dao
 
 import androidx.room.Room
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.currencyrate.CurrencyRateEntity
+import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.networkstat.NetworkStatEntity
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntity
 import emperorfin.android.propertylisting.domain.uilayer.event.output.property.PropertyEntityParams
 import emperorfin.android.propertylisting.domain.uilayer.event.output.currencyrate.CurrencyRateEntityParams
+import emperorfin.android.propertylisting.domain.uilayer.event.output.networkstat.NetworkStatEntityParams
 import emperorfin.android.propertylisting.data.datasource.remote.framework.retrofit.webservice.hostelworld.endpoint.currencyrates.CurrencyRatesResponse
+import emperorfin.android.propertylisting.data.datasource.remote.framework.retrofit.webservice.hostelworld.endpoint.networkstat.NetworkStatsResponse
 import emperorfin.android.propertylisting.data.datasource.remote.framework.retrofit.webservice.hostelworld.endpoint.properties.PropertiesResponse
 import retrofit2.Retrofit
 
@@ -16,10 +19,10 @@ import retrofit2.Retrofit
  * a dependency in or referenced from the __*domain*__ layer. The reason [PropertyEntity] instead of
  * [PropertyEntityParams] (which is from the __*domain*__ layer) is referenced here is because the [Room]
  * ORM doesn't support return type override. This also applies to [CurrencyRateEntity] instead of
- * [CurrencyRateEntityParams].
+ * [CurrencyRateEntityParams] and [NetworkStatEntity] instead of [NetworkStatEntityParams].
  *
- * Because [Retrofit] supports return type override, [PropertiesResponse] and [CurrencyRatesResponse]
- * weren't referenced in this __*domain*__ layer.
+ * Because [Retrofit] supports return type override, [PropertiesResponse], [CurrencyRatesResponse]
+ * and [NetworkStatsResponse] weren't referenced in this __*domain*__ layer.
  */
 interface IPropertyDao {
 
@@ -48,5 +51,16 @@ interface IPropertyDao {
     suspend fun insertCurrencyRates(currencyRates: List<CurrencyRateEntity>): List<Long>
 
     suspend fun deleteCurrencyRates(currencySymbolBase: String): Int
+
+    suspend fun countAllNetworkStats(): Int
+
+    suspend fun getAllNetworkStats(): List<NetworkStatEntity>
+
+//    suspend fun getNetworkStats(): Response<NetworkStatsResponse>
+    suspend fun getNetworkStats(requestMethod: String, duration: String): Any
+
+    suspend fun insertNetworkStat(networkStat: NetworkStatEntity): Long
+
+    suspend fun deleteNetworkStat(requestMethod: String): Int
     
 }

@@ -7,6 +7,9 @@ import androidx.room.Query
 import emperorfin.android.propertylisting.data.constant.StringConstants.ERROR_MESSAGE_NOT_YET_IMPLEMENTED
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.currencyrate.CurrencyRateEntity
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.currencyrate.CurrencyRateEntity.Companion.COLUMN_INFO_CURRENCY_SYMBOL_BASE
+import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.networkstat.NetworkStatEntity
+import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.networkstat.NetworkStatEntity.Companion.COLUMN_INFO_REQUEST_METHOD
+import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.networkstat.NetworkStatEntity.Companion.TABLE_NAME as TABLE_NAME_NETWORK_STAT
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntity
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntity.Companion.TABLE_NAME as TABLE_NAME_PROPERTY
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntity.Companion.COLUMN_INFO_ID as COLUMN_INFO_ID_PROPERTY
@@ -54,12 +57,28 @@ interface PropertyDao : IPropertyDao {
     @Query("DELETE FROM $TABLE_NAME_CURRENCY_RATE WHERE $COLUMN_INFO_CURRENCY_SYMBOL_BASE = :currencySymbolBase")
     override suspend fun deleteCurrencyRates(currencySymbolBase: String): Int
 
+    @Query("SELECT COUNT(*) FROM $TABLE_NAME_NETWORK_STAT")
+    override suspend fun countAllNetworkStats(): Int
+
+    @Query("SELECT * FROM $TABLE_NAME_NETWORK_STAT ORDER BY $COLUMN_INFO_REQUEST_METHOD ASC")
+    override suspend fun getAllNetworkStats(): List<NetworkStatEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    override suspend fun insertNetworkStat(networkStat: NetworkStatEntity): Long
+
+    @Query("DELETE FROM $TABLE_NAME_NETWORK_STAT WHERE $COLUMN_INFO_REQUEST_METHOD = :requestMethod")
+    override suspend fun deleteNetworkStat(requestMethod: String): Int
+
     // This must be overridden else the Room ORM won't allow project to compile.
     override suspend fun getProperties(): Any =
         throw IllegalStateException(ERROR_MESSAGE_NOT_YET_IMPLEMENTED)
 
     // This must be overridden else the Room ORM won't allow project to compile.
     override suspend fun getCurrencyRates(): Any =
+        throw IllegalStateException(ERROR_MESSAGE_NOT_YET_IMPLEMENTED)
+
+    // This must be overridden else the Room ORM won't allow project to compile.
+    override suspend fun getNetworkStats(requestMethod: String, duration: String): Any =
         throw IllegalStateException(ERROR_MESSAGE_NOT_YET_IMPLEMENTED)
     
 }
