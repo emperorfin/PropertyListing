@@ -26,7 +26,7 @@ fun LoadingIndicator(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.width(width = dimensionResource(id = R.dimen.loading_indicator_circular_progress_indicator_width)),
+            modifier = Modifier.width(width = dimensionResource(id = R.dimen.loading_indicator_circular_progress_indicator_width_64)),
             color = MaterialTheme.colorScheme.secondary,
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
         )

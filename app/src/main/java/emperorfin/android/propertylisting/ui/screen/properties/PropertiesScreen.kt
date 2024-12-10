@@ -28,14 +28,19 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.squareup.moshi.Moshi
 import emperorfin.android.propertylisting.R
 import emperorfin.android.propertylisting.domain.uilayer.event.input.property.PropertyParams
 import emperorfin.android.propertylisting.ui.component.AppBar
 import emperorfin.android.propertylisting.ui.component.ContentLoader
 import emperorfin.android.propertylisting.ui.component.EmptyContent
 import emperorfin.android.propertylisting.ui.component.LoadingIndicator
+import emperorfin.android.propertylisting.ui.component.PropertiesScreenMenu
 import emperorfin.android.propertylisting.ui.component.PropertyListItem
+import emperorfin.android.propertylisting.ui.model.property.PropertyUiModel
+import emperorfin.android.propertylisting.ui.navigation.Destinations.ROUTE_PROPERTY_DETAILS
 import emperorfin.android.propertylisting.ui.navigation.NavigationActions
+import emperorfin.android.propertylisting.ui.navigation.ScreenArgs
 import emperorfin.android.propertylisting.ui.screen.properties.stateholder.PropertiesUiState
 import emperorfin.android.propertylisting.ui.screen.properties.stateholder.PropertiesViewModel
 import emperorfin.android.propertylisting.ui.util.InternetConnectivityUtil.hasInternetConnection
@@ -58,6 +63,11 @@ fun PropertiesScreen(
         topBar = {
             AppBar(
                 title = stringResource(R.string.app_name),
+                actions = {
+                    PropertiesScreenMenu(
+                        onNetworkStat = {}
+                    )
+                }
             )
         },
         modifier = modifier.fillMaxSize(),
@@ -99,7 +109,7 @@ private fun Content(
     val errorMessage = uiState.errorMessage
 
     Column {
-        Spacer(modifier = Modifier.height(height = dimensionResource(id = R.dimen.properties_screen_spacer_height)))
+        Spacer(modifier = Modifier.height(height = dimensionResource(id = R.dimen.properties_screen_spacer_height_58)))
 
         ContentLoader(
             loading = isLoading,
@@ -122,7 +132,7 @@ private fun Content(
         ) {
 
             LazyVerticalGrid(
-                columns = GridCells.Fixed(count = integerResource(id = R.integer.properties_screen_lazy_vertical_grid_column_count)),
+                columns = GridCells.Fixed(count = integerResource(id = R.integer.properties_screen_lazy_vertical_grid_column_count_2)),
                 state = lazyListState,
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.background),
@@ -133,7 +143,6 @@ private fun Content(
                     PropertyListItem(
                         property = property,
                         onClick = {
-
                             // TODO: Remove this restriction once the property details could be viewed offline.
                             if (!hasInternetConnection(context.applicationContext as Application)){
                                 Toast.makeText(context, R.string.message_no_internet_connectivity, Toast.LENGTH_SHORT).show()
@@ -141,7 +150,13 @@ private fun Content(
                                 return@PropertyListItem
                             }
 
-//                            navigationActions?.navigateToPropertyDetailsScreen(it)
+                            val moshi = Moshi.Builder().build()
+                            val jsonAdapter = moshi.adapter(PropertyUiModel::class.java).lenient()
+                            val propertyJson = jsonAdapter.toJson(it)
+
+                            navigationActions?.navigateToPropertyDetailsScreen(
+                                ROUTE_PROPERTY_DETAILS.replace("{${ScreenArgs.SCREEN_PROPERTY_DETAILS}}", propertyJson)
+                            )
                         }
                     )
                 }

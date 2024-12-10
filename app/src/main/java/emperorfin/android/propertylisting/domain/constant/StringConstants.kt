@@ -9,4 +9,9 @@ object StringConstants {
     const val CURRENCY_SYMBOL_EUR: String = "€"
     const val CURRENCY_SYMBOL_USD: String = "$"
     const val CURRENCY_SYMBOL_GBP: String = "£"
+
+    const val QUESTION_MARK: String = "?"
+
+    const val PROTOCOL_HTTP: String = "http://"
+    const val PROTOCOL_HTTPS: String = "https://"
 }

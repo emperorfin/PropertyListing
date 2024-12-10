@@ -11,7 +11,6 @@ import emperorfin.android.propertylisting.di.IoDispatcher
 import emperorfin.android.propertylisting.domain.datalayer.repository.IPropertyRepository
 import emperorfin.android.propertylisting.domain.exception.PropertyFailure
 import emperorfin.android.propertylisting.domain.model.property.PropertyModel
-import emperorfin.android.propertylisting.domain.model.property.PropertyModelMapper
 import emperorfin.android.propertylisting.domain.uilayer.event.input.property.None
 import emperorfin.android.propertylisting.domain.uilayer.event.input.property.PropertyParams
 import emperorfin.android.propertylisting.domain.uilayer.event.output.ResultData
@@ -36,11 +35,10 @@ import kotlin.properties.Delegates
 @HiltViewModel
 data class PropertiesViewModel @Inject constructor(
     val application: Application,
-    private val propertyRepository: IPropertyRepository,
-    private val propertyModelMapper: PropertyModelMapper,
-    private val propertyUiModelMapper: PropertyUiModelMapper,
     @IoDispatcher private val coroutineDispatcherIo: CoroutineDispatcher,
     @DefaultDispatcher private val coroutineDispatcherDefault: CoroutineDispatcher,
+    private val propertyUiModelMapper: PropertyUiModelMapper,
+    private val propertyRepository: IPropertyRepository,
 ) : ViewModel() {
 
     companion object {
@@ -120,11 +118,10 @@ data class PropertiesViewModel @Inject constructor(
             propertyRepository.getProperties(params = params, forceUpdate = isRefresh)
 
         if (propertiesResultData.succeeded) {
-            val propertiesEntity = (propertiesResultData as ResultData.Success).data
 
-            val propertiesUiModel: List<PropertyUiModel> = propertiesEntity.map {
-                propertyModelMapper.transform(it)
-            }.map {
+            val propertiesModel = (propertiesResultData as ResultData.Success).data
+
+            val propertiesUiModel: List<PropertyUiModel> = propertiesModel.map {
                 propertyUiModelMapper.transform(it)
             }
 

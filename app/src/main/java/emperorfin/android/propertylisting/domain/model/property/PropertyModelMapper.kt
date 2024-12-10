@@ -2,10 +2,13 @@ package emperorfin.android.propertylisting.domain.model.property
 
 import emperorfin.android.propertylisting.domain.constant.DoubleConstants.MINUS_0_0
 import emperorfin.android.propertylisting.domain.constant.StringConstants.EMPTY
+import emperorfin.android.propertylisting.domain.constant.StringConstants.PROTOCOL_HTTP
+import emperorfin.android.propertylisting.domain.constant.StringConstants.PROTOCOL_HTTPS
 import emperorfin.android.propertylisting.domain.uilayer.event.output.property.PropertyDataTransferObjectParams
 import emperorfin.android.propertylisting.domain.uilayer.event.output.property.PropertyEntityParams
 import emperorfin.android.propertylisting.domain.uilayer.event.output.property.PropertyUiModelParams
 import java.math.RoundingMode
+import java.net.URLEncoder
 import javax.inject.Inject
 
 class PropertyModelMapper @Inject constructor() {
@@ -17,8 +20,8 @@ class PropertyModelMapper @Inject constructor() {
     fun transform(property: PropertyDataTransferObjectParams): PropertyModel {
 
         val id: Long = property.id
-        val name: String = property.name ?: EMPTY
-        val overview: String = property.overview ?: EMPTY
+        val name: String = URLEncoder.encode(property.name) ?: EMPTY
+        val overview: String = URLEncoder.encode(property.overview) ?: EMPTY
         val isFeatured: Boolean? = property.isFeatured
         val lowestPricePerNightInEuros: Double = property.lowestPricePerNightInEuros ?: MINUS_0_0
         val rating: Double = property.rating ?: MINUS_0_0
@@ -34,8 +37,8 @@ class PropertyModelMapper @Inject constructor() {
         }
 
         if (imageUrl.isNotEmpty()) {
-            if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
-                imageUrl = "https://$imageUrl"
+            if (!imageUrl.startsWith(PROTOCOL_HTTP) && !imageUrl.startsWith(PROTOCOL_HTTPS)) {
+                imageUrl = "$PROTOCOL_HTTPS$imageUrl"
             }
         }
 

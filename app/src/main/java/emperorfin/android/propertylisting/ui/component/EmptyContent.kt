@@ -42,14 +42,14 @@ fun EmptyContent(
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                modifier = Modifier.size(size = dimensionResource(id = R.dimen.empty_content_image_size)),
+                modifier = Modifier.size(size = dimensionResource(id = R.dimen.empty_content_image_size_150)),
                 painter = painterResource(errorIcon),
                 contentDescription = stringResource(R.string.content_description_error_message),
             )
             Text(
                 text = stringResource(errorLabel),
                 color = Color.Black,
-                fontSize = dimensionResource(id = R.dimen.empty_content_text_font_size).value.sp,
+                fontSize = dimensionResource(id = R.dimen.empty_content_text_font_size_17).value.sp,
                 textAlign = TextAlign.Center,
             )
             Button(

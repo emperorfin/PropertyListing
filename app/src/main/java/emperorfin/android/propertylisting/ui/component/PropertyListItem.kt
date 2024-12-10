@@ -49,7 +49,7 @@ fun PropertyListItem(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .height(height = dimensionResource(id = R.dimen.property_list_item_surface_height))
+            .height(height = dimensionResource(id = R.dimen.property_list_item_surface_height_330))
             .clickable(
                 onClick = {
                     onClick(property)
@@ -69,7 +69,7 @@ fun PropertyListItem(
                 networkUrl = property.imageUrl,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(height = dimensionResource(id = R.dimen.property_list_item_network_image_height))
+                    .height(height = dimensionResource(id = R.dimen.property_list_item_network_image_height_240))
                     .constrainAs(image) {
                         top.linkTo(parent.top)
                     },
@@ -81,7 +81,7 @@ fun PropertyListItem(
             Crossfade(
                 targetState = palette,
                 modifier = Modifier
-                    .height(height = dimensionResource(id = R.dimen.property_list_item_cross_fade_height))
+                    .height(height = dimensionResource(id = R.dimen.property_list_item_cross_fade_height_90))
                     .constrainAs(box) {
                         top.linkTo(image.bottom)
                         bottom.linkTo(parent.bottom)
@@ -94,7 +94,7 @@ fun PropertyListItem(
                 Box(
                     modifier = Modifier
                         .background(backgroundColor)
-                        .alpha(alpha = resources.getFloat(R.dimen.property_list_item_box_alpha))
+                        .alpha(alpha = resources.getFloat(R.dimen.property_list_item_box_alpha_0_7))
                         .fillMaxSize()
                 )
             }
@@ -102,10 +102,10 @@ fun PropertyListItem(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .alpha(alpha = resources.getFloat(R.dimen.property_list_item_column_alpha))
+                    .alpha(alpha = resources.getFloat(R.dimen.property_list_item_column_alpha_0_85))
                     .padding(
-                        horizontal = dimensionResource(id = R.dimen.property_list_item_column_padding_horizontal),
-                        vertical = dimensionResource(id = R.dimen.property_list_item_column_padding_vertical)
+                        horizontal = dimensionResource(id = R.dimen.property_list_item_column_padding_horizontal_8),
+                        vertical = dimensionResource(id = R.dimen.property_list_item_column_padding_vertical_8)
                     )
                     .constrainAs(title) {
                         top.linkTo(box.top)
@@ -117,7 +117,7 @@ fun PropertyListItem(
                     text = property.name,
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
-                    maxLines = integerResource(id = R.integer.property_list_item_text_max_lines),
+                    maxLines = integerResource(id = R.integer.property_list_item_text_max_lines_1),
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Bold
                 )
@@ -128,7 +128,7 @@ fun PropertyListItem(
                             text = stringResource(id = R.string.featured),
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Center,
-                            maxLines = integerResource(id = R.integer.property_list_item_text_max_lines),
+                            maxLines = integerResource(id = R.integer.property_list_item_text_max_lines_1),
                             overflow = TextOverflow.Ellipsis,
                             fontWeight = FontWeight.Normal,
                             fontStyle = FontStyle.Italic
@@ -139,7 +139,7 @@ fun PropertyListItem(
                     text = property.lowestPricePerNightInEurosWithCurrencySymbol,
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
-                    maxLines = integerResource(id = R.integer.property_list_item_text_max_lines_var2),
+                    maxLines = integerResource(id = R.integer.property_list_item_text_max_lines_2),
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Bold
                 )
@@ -148,7 +148,7 @@ fun PropertyListItem(
                     text = "${property.rating}/10.0",
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
-                    maxLines = integerResource(id = R.integer.property_list_item_text_max_lines_var2),
+                    maxLines = integerResource(id = R.integer.property_list_item_text_max_lines_2),
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Bold
                 )

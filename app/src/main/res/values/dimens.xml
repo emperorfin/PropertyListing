@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="loading_indicator_circular_progress_indicator_width">64dp</dimen>
+    <dimen name="loading_indicator_circular_progress_indicator_width_64">64dp</dimen>
 
-    <dimen name="app_bar_top_app_bar_height">70dp</dimen>
-    <dimen name="app_bar_text_padding_all">8dp</dimen>
-    <dimen name="app_bar_text_font_size">18dp</dimen>
+    <dimen name="app_bar_top_app_bar_height_70">70dp</dimen>
+    <dimen name="app_bar_text_padding_all_8">8dp</dimen>
+    <dimen name="app_bar_text_font_size_18">18dp</dimen>
 
-    <dimen name="empty_content_image_size">150dp</dimen>
-    <dimen name="empty_content_text_font_size">17dp</dimen>
+    <dimen name="empty_content_image_size_150">150dp</dimen>
+    <dimen name="empty_content_text_font_size_17">17dp</dimen>
 
-    <dimen name="property_list_item_surface_height">330dp</dimen>
-    <dimen name="property_list_item_network_image_height">240dp</dimen>
-    <dimen name="property_list_item_cross_fade_height">90dp</dimen>
-    <dimen name="property_list_item_column_padding_horizontal">8dp</dimen>
-    <dimen name="property_list_item_column_padding_vertical">8dp</dimen>
+    <dimen name="property_list_item_surface_height_330">330dp</dimen>
+    <dimen name="property_list_item_network_image_height_240">240dp</dimen>
+    <dimen name="property_list_item_cross_fade_height_90">90dp</dimen>
+    <dimen name="property_list_item_column_padding_horizontal_8">8dp</dimen>
+    <dimen name="property_list_item_column_padding_vertical_8">8dp</dimen>
 
-    <dimen name="properties_screen_spacer_height">58dp</dimen>
+    <dimen name="properties_screen_spacer_height_58">58dp</dimen>
+
+    <dimen name="property_details_screen_spacer_height_12">12dp</dimen>
+    <dimen name="property_details_screen_spacer_height_15">15dp</dimen>
+    <dimen name="property_details_screen_spacer_height_58">58dp</dimen>
+    <dimen name="property_details_screen_spacer_height_23">23dp</dimen>
+    <dimen name="property_details_screen_spacer_height_24">24dp</dimen>
+    <dimen name="property_details_screen_spacer_height_25">25dp</dimen>
+    <dimen name="property_details_screen_spacer_height_6">6dp</dimen>
+    <dimen name="property_details_screen_spacer_height_8">8dp</dimen>
+    <dimen name="property_details_screen_network_image_height_380">380dp</dimen>
+    <dimen name="property_details_screen_text_padding_horizontal_8">8dp</dimen>
+    <dimen name="property_details_screen_text_padding_horizontal_15">15dp</dimen>
 </resources>

@@ -6,8 +6,19 @@
     <string name="description">Description</string>
     <string name="featured">featured</string>
     <string name="empty"></string>
+
+    <string name="txt_overall_rating">Overall rating</string>
+
+    <string name="menu_more">More</string>
+    <string name="menu_item_euro_price">EUR</string>
+    <string name="menu_item_dollar_price">USD</string>
+    <string name="menu_item_pound_price">GBP</string>
+    <string name="menu_item_network_stat">Network Stat</string>
+    <string name="menu_filter">Filter</string>
+
     <string name="message_no_internet_connectivity">No internet connectivity.</string>
     <string name="message_no_internet_loading_cached_properties">No internet connectivity. Loading saved properties…</string>
+    <string name="message_no_internet_loading_cached_currency_rates">No internet connectivity. Loading saved currency rates…</string>
 
     <string name="error_message_coil_image_request_failed">Image request failed.</string>
 

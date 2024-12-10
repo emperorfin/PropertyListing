@@ -13,6 +13,7 @@ import emperorfin.android.propertylisting.ui.model.property.PropertyUiModel
 import emperorfin.android.propertylisting.ui.navigation.Destinations.ROUTE_PROPERTIES
 import emperorfin.android.propertylisting.ui.navigation.Destinations.ROUTE_PROPERTY_DETAILS
 import emperorfin.android.propertylisting.ui.screen.properties.PropertiesScreen
+import emperorfin.android.propertylisting.ui.screen.propertydetails.PropertyDetailsScreen
 
 
 @Composable
@@ -43,11 +44,10 @@ fun NavGraph(
                 val jsonAdapter = moshi.adapter(PropertyUiModel::class.java).lenient()
                 val propertyObject = jsonAdapter.fromJson(propertyJson)
 
-//                PropertyDetailsScreen(
-//                    property = propertyObject,
-//                    navController = navController,
-//                    navigationActions = navActions,
-//                )
+                PropertyDetailsScreen(
+                    property = propertyObject,
+                    navigationActions = navActions,
+                )
             }
         }
     }

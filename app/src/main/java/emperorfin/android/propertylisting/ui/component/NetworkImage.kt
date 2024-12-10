@@ -8,8 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.skydoves.landscapist.CircularReveal
@@ -38,7 +36,7 @@ fun NetworkImage(
     shimmerParams: ShimmerParams? = ShimmerParams(
         baseColor = MaterialTheme.colorScheme.background,
         highlightColor = ShimmerHighLight,
-        dropOff = context.resources.getFloat(R.dimen.network_image_shimmer_params_drop_off)
+        dropOff = context.resources.getFloat(R.dimen.network_image_shimmer_params_drop_off_0_65)
     ),
 ) {
     val url = networkUrl ?: return
