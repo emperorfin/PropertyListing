@@ -65,7 +65,9 @@ fun PropertiesScreen(
                 title = stringResource(R.string.app_name),
                 actions = {
                     PropertiesScreenMenu(
-                        onNetworkStat = {}
+                        onNetworkStat = {
+                            navigationActions?.navigateToNetworkStatsScreen()
+                        }
                     )
                 }
             )

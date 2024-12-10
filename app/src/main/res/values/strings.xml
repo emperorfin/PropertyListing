@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Property Listing</string>
 
+    <string name="screen_title_network_stats">Network Stats</string>
+
     <string name="content_description_error_message">Error message</string>
     <string name="btn_retry">Retry</string>
     <string name="description">Description</string>
@@ -19,6 +21,7 @@
     <string name="message_no_internet_connectivity">No internet connectivity.</string>
     <string name="message_no_internet_loading_cached_properties">No internet connectivity. Loading saved properties…</string>
     <string name="message_no_internet_loading_cached_currency_rates">No internet connectivity. Loading saved currency rates…</string>
+    <string name="message_no_internet_loading_cached_network_stats">No internet connectivity. Loading saved network stats…</string>
 
     <string name="error_message_coil_image_request_failed">Image request failed.</string>
 

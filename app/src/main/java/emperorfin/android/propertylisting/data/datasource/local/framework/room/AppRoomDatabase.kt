@@ -10,7 +10,7 @@ import emperorfin.android.propertylisting.data.datasource.local.framework.room.e
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntity
 
 
-@Database(entities = [PropertyEntity::class, CurrencyRateEntity::class, NetworkStatEntity::class], version = 1, exportSchema = false)
+@Database(entities = [PropertyEntity::class, CurrencyRateEntity::class, NetworkStatEntity::class], version = 2, exportSchema = false)
 abstract class AppRoomDatabase : RoomDatabase() {
 
     abstract val mPropertyDao: PropertyDao

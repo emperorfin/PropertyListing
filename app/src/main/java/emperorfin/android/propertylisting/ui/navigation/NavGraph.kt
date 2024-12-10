@@ -10,8 +10,10 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.squareup.moshi.Moshi
 import emperorfin.android.propertylisting.ui.model.property.PropertyUiModel
+import emperorfin.android.propertylisting.ui.navigation.Destinations.ROUTE_NETWORK_STATS
 import emperorfin.android.propertylisting.ui.navigation.Destinations.ROUTE_PROPERTIES
 import emperorfin.android.propertylisting.ui.navigation.Destinations.ROUTE_PROPERTY_DETAILS
+import emperorfin.android.propertylisting.ui.screen.networkstat.NetworkStatsScreen
 import emperorfin.android.propertylisting.ui.screen.properties.PropertiesScreen
 import emperorfin.android.propertylisting.ui.screen.propertydetails.PropertyDetailsScreen
 
@@ -48,6 +50,10 @@ fun NavGraph(
                     property = propertyObject,
                     navigationActions = navActions,
                 )
+            }
+
+            composable(ROUTE_NETWORK_STATS) {
+                NetworkStatsScreen(navigationActions = navActions)
             }
         }
     }
