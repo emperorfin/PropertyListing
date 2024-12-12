@@ -44,6 +44,9 @@ import retrofit2.Response
 import javax.inject.Inject
 
 data class PropertyRemoteDataSource @Inject constructor(
+    /**
+     * TODO: Rename [propertyDao] to propertyApi
+     */
     @RemotePropertyDao private val propertyDao: IPropertyDao,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,

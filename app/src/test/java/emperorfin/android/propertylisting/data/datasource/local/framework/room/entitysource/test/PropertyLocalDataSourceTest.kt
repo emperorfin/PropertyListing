@@ -10,7 +10,7 @@ import emperorfin.android.propertylisting.data.datasource.local.framework.room.e
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.networkstat.NetworkStatEntityMapper
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntityMapper
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entitysource.PropertyLocalDataSource
-import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_BASE_USD
+import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_BASE_EUR
 import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_OTHER_AED
 import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_OTHER_AFN
 import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_OTHER_ALL
@@ -283,14 +283,14 @@ internal class PropertyLocalDataSourceTest {
         val currencyRateModel1 = CurrencyRateModel.newInstance(
             id = ID_AED,
             rate = RATE_AED,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AED,
         )
 
         val currencyRateModel2 = CurrencyRateModel.newInstance(
             id = ID_AFN,
             rate = RATE_AFN,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AFN,
         )
 
@@ -371,14 +371,14 @@ internal class PropertyLocalDataSourceTest {
         val currencyRateModel1 = CurrencyRateModel.newInstance(
             id = ID_AED,
             rate = RATE_AED,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AED,
         )
 
         val currencyRateModel2 = CurrencyRateModel.newInstance(
             id = ID_AFN,
             rate = RATE_AFN,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AFN,
         )
 
@@ -427,21 +427,21 @@ internal class PropertyLocalDataSourceTest {
         val currencyRateModel1 = CurrencyRateModel.newInstance(
             id = ID_AED,
             rate = RATE_AED,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AED,
         )
 
         val currencyRateModel2 = CurrencyRateModel.newInstance(
             id = ID_AFN,
             rate = RATE_AFN,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AFN,
         )
 
         val currencyRateModel3 = CurrencyRateModel.newInstance(
             id = ID_ALL,
             rate = RATE_ALL,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_ALL,
         )
 

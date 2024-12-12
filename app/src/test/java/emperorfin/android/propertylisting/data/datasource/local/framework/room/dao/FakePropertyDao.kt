@@ -5,7 +5,7 @@ import emperorfin.android.propertylisting.data.datasource.local.framework.room.e
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.networkstat.NetworkStatEntity
 import emperorfin.android.propertylisting.data.datasource.local.framework.room.entity.property.PropertyEntity
 import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil
-import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_BASE_USD
+import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_BASE_EUR
 import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_OTHER_AED
 import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.CURRENCY_SYMBOL_OTHER_AFN
 import emperorfin.android.propertylisting.data.datasource.util.DataGeneratorUtil.ID_AED
@@ -80,14 +80,14 @@ internal data class FakePropertyDao(
         val currencyRate1 = CurrencyRateEntity.newInstance(
             id = ID_AED,
             rate = RATE_AED,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AED,
         )
 
         val currencyRate2 = CurrencyRateEntity.newInstance(
             id = ID_AFN,
             rate = RATE_AFN,
-            currencySymbolBase = CURRENCY_SYMBOL_BASE_USD,
+            currencySymbolBase = CURRENCY_SYMBOL_BASE_EUR,
             currencySymbolOther = CURRENCY_SYMBOL_OTHER_AFN,
         )
 
