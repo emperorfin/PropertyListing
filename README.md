@@ -21,7 +21,7 @@ also view the price of a property in different currencies and can also check the
 * Retrofit
 * Dummy HostelWorld REST API
 * Dependency Injection Framework (Hilt)
-* Some Unit Test
+* Some Unit Tests
 
 ## Getting Started
 
